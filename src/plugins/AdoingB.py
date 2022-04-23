@@ -12,7 +12,11 @@ async def handle_first_receive(event: GroupMessageEvent):
     str2 = ""
     for i in event.get_message():
         if count == 0:
-            str1, str2 = str(i).strip("/").strip(" ").split(" ")[:2]
+            string = str(i).strip("/").strip(" ").split(" ")
+            if len(string) == 1:
+                str1 = string[0]
+            else:
+                str1, str2 = string[:2]
             count += 1
         elif count == 1:
             i = str(i)
