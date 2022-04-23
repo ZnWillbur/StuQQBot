@@ -1,6 +1,7 @@
 from nonebot import require, get_bot
 from nonebot.adapters import Message
 from nonebot.adapters.onebot.v11 import MessageSegment
+import datetime
 
 
 scheduler = require('nonebot_plugin_apscheduler').scheduler
@@ -93,10 +94,10 @@ async def demo7():
 #     bot, group_id, message= tempelate(8)
 #     await bot.send_group_msg(group_id=group_id, message=message)
 
-@scheduler.scheduled_job("cron", hour=21, minute=0)
-async def demo21():
-    bot, group_id, message= tempelate(9)
-    await bot.send_group_msg(group_id=group_id, message=message)
+# @scheduler.scheduled_job("cron", hour=21, minute=0)
+# async def demo21():
+#     bot, group_id, message= tempelate(9)
+#     await bot.send_group_msg(group_id=group_id, message=message)
 
 @scheduler.scheduled_job("cron", hour=22, minute=0)
 async def demo22():
@@ -114,7 +115,26 @@ async def demo0():
     await bot.send_group_msg(group_id=group_id, message=message)
 
 """定时发送消息"""
-@scheduler.scheduled_job("cron", hour=9, minute=30)
+@scheduler.scheduled_job("cron", hour=21, minute=30)
+async def leaveSchool():
+    try:
+        bot = get_bot()
+    except:
+        print(f"发送消息失败!!没有可获取的bot!!")
+        return
+    # 判断是否为周六日
+    time_str = str(datetime.date.today())
+    date_obj = datetime.datetime.strptime(time_str,'%Y-%m-%d')
+    week_info = datetime.datetime.strftime(date_obj,'%w')
+    if int(week_info) == 6 or int(week_info) == 0:
+        return
+    # 编辑消息段
+    group_id=809011943
+    message = Message([
+    MessageSegment(type='text', data={'text': "走读生们晚上好!放学了哦~~"})])
+    await bot.send_group_msg(group_id=group_id, message=message)
+
+@scheduler.scheduled_job("cron", hour=0, minute=0)
 async def leaveSchool():
     try:
         bot = get_bot()
@@ -123,5 +143,6 @@ async def leaveSchool():
         return
     group_id=809011943
     message = Message([
-    MessageSegment(type='text', data={'text': "走读生们晚上好!放学了哦~~"})])
+    MessageSegment(type='text', data={'text': "熬夜人快睡觉啦!!"})])
     await bot.send_group_msg(group_id=group_id, message=message)
+

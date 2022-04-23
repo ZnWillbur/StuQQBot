@@ -57,6 +57,5 @@ GroupIncrease = on_command("test")
 async def handle_first_receive(bot: Bot, event: GroupMessageEvent):
     message = Message([
     MessageSegment(type='at', data={'qq':'754101031'}),
-    MessageSegment(type='text', data={'text':'OK了'})])
+    MessageSegment(type='text', data={'text':'运行成功!'})])
     await bot.send(event=event, message=message)
-    
