@@ -6,5 +6,7 @@ swe1 = on_regex(r"woc|草|wc|艹|我超|卧槽|操|靠|wok|wk|离.*?谱|\?+")
 
 @swe1.handle()
 async def handle_first_receive(event: GroupMessageEvent):
+    if "CQ" in str(event.get_message()):
+        return
     await Matcher.send(event.get_message())
 
