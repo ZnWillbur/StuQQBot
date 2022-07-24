@@ -7,7 +7,7 @@ PrivateIncrease =  on_command("打卡")
 
 @PrivateIncrease.handle()
 async def phelp(bot: Bot, event:PrivateMessageEvent):
-    for i in range(1, 67):
+    for i in range(1, 31):
         message = Message([
             MessageSegment(type='text', data={'text':f"打卡{i}"})])
         await bot.send(event=event, message=message)
