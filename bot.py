@@ -21,7 +21,10 @@ driver = nonebot.get_driver()
 driver.register_adapter(ONEBOT_V11Adapter)
 
 nonebot.load_builtin_plugins("echo")
-# nonebot.load_plugin("nonebot_plugin_petpet")
+nonebot.load_plugin("nonebot_plugin_petpet")
+nonebot.load_plugin("nonebot_plugin_pixivrank_search")
+nonebot.load_plugin("nonebot_plugin_emojimix")
+# nonebot.load_plugin('nonebot_plugin_pixiv')
 
 # Please DO NOT modify this file unless you know what you are doing!
 # As an alternative, you should use command `nb` or modify `pyproject.toml` to load plugins
