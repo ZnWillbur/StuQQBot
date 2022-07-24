@@ -20,10 +20,20 @@ text = """使用指南：
 回复：“@你自己 字符串1 @xxx 字符串2 ！”
 """
 
+# 群组中响应help
 GroupIncrease = on_command("help")
 
 @GroupIncrease.handle()
-async def handle_first_receive(bot: Bot, event: GroupMessageEvent):
+async def handle_help(bot: Bot, event: GroupMessageEvent):
+    message = Message([
+    MessageSegment(type='text', data={'text':text})])
+    await bot.send(event=event, message=message)
+
+# 私聊中响应help
+PrivateIncrease =  on_command("help")
+
+@PrivateIncrease.handle()
+async def phelp(bot: Bot, event:PrivateMessageEvent):
     message = Message([
     MessageSegment(type='text', data={'text':text})])
     await bot.send(event=event, message=message)

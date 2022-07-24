@@ -59,3 +59,12 @@ async def handle_first_receive(bot: Bot, event: GroupMessageEvent):
     MessageSegment(type='at', data={'qq':'754101031'}),
     MessageSegment(type='text', data={'text':'运行成功!'})])
     await bot.send(event=event, message=message)
+
+
+PrivateIncrease =  on_command("test")
+
+@PrivateIncrease.handle()
+async def ptest(bot: Bot, event:PrivateMessageEvent):
+    message = Message([
+    MessageSegment(type='text', data={'text':'运行成功!'})])
+    await bot.send(event=event, message=message)
